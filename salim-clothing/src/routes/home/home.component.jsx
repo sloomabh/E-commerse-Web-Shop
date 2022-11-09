@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"; // we use it to show where we nest the matching element
 import Directory from "../../components/directory/directory.component";
 
 const Home = () => {
@@ -29,6 +30,11 @@ const Home = () => {
     },
   ];
 
-  return <Directory categories={categories} />;
+  return (
+    <div>
+      <Outlet />
+      <Directory categories={categories} />
+    </div>
+  );
 };
 export default Home;
