@@ -3,7 +3,7 @@ import React from "react";
 import Navigation from "./routes/navigation/navigation.component";
 
 import Home from "./routes/home/home.component";
-import SignIn from "./routes/sign-in/sign-in.component";
+import Athentication from "./routes/authentication/authentication.component";
 
 const Shop = () => {
   return <h1> this is the Shop </h1>;
@@ -16,7 +16,7 @@ const App = () => {
         <Route index element={<Home />} />
         {/* we replaced  "path ="home" ' with "index"  or in reality  index = "{true} "  so  the hom should be always shown i*/}
         <Route path="shop" element={<Shop />} />
-        <Route path="sign-in" element={<SignIn />} />
+        <Route path="auth" element={<Athentication />} />
       </Route>
     </Routes>
   );
