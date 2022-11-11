@@ -6,6 +6,10 @@ import {
 
 import FormInput from "../form-input/form-imput.component";
 
+import Button from "../button/button.cmponent";
+
+import "./sign-up-form.styles.scss";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -57,7 +61,8 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <h1>Sign up with your email and password</h1>
+      <h2>Don't have an account</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
@@ -96,7 +101,7 @@ const SignUpForm = () => {
           value={confirmpassword}
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
