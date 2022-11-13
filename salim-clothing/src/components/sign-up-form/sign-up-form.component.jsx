@@ -29,6 +29,8 @@ const SignUpForm = () => {
   //we destruct them incase we need them
   const { displayName, email, password, confirmpassword } = formFields;
 
+  // console.log("hit");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
