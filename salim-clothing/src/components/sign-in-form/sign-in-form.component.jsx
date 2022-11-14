@@ -7,7 +7,7 @@ import {
 
 import FormInput from "../form-input/form-imput.component";
 
-import Button from "../button/button.cmponent";
+import Button from "../button/button.component";
 
 import "./sign-in-form.styles.scss";
 
