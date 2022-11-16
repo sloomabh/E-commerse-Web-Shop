@@ -50,7 +50,7 @@ const Navigation = () => {
         </div>
         {isCartOpen && <CartDropdown />}
       </div>
-      <Outlet /> {/* all component are ubder navigation */}
+      <Outlet /> {/* all component are under navigation */}
     </Fragment>
   );
 };

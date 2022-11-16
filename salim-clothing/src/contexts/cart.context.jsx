@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-
+import React from "react";
 /**********************   addCartItem (helper function for  setCartItems) **************************** */
 //find if cartitems contains
 

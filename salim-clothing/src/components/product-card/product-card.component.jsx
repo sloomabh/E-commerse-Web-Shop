@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import React from "react";
+
 import { CartContext } from "../../contexts/cart.context";
 
 import Button from "../button/button.component";
