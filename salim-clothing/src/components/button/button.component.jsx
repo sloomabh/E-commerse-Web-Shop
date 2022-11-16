@@ -1,4 +1,5 @@
 import "./button.styles.scss";
+import React from "react";
 /*we have 3 types of buttons
 default
 
