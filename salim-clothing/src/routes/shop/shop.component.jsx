@@ -15,4 +15,4 @@ const Shop = () => {
 };
 
 export default Shop;
-//  :categoryis a variable
+//  :categories is a variable
