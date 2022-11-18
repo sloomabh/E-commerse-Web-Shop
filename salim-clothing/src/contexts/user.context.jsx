@@ -1,5 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 
+import { createAction } from "../utils/reducer/reducer.utils.jsx";
+
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
@@ -20,7 +22,8 @@ const INITIAL_STATE = {
 
 const userReducer = (state, action) => {
   const { type, payload } = action;
-  //based on type we set  the payload which is the value that we will set it to to our 3currentUser
+  //based on type we set  the payload which is the value
+  //that we will set it to to our currentUser
   switch (type) {
     case USER_ACTION_TYPES.SET_CURRENT_USER:
       return { ...state, currentUser: payload }; // ...state --> spread the same values on the previous state object // and then override the current user with new value  --> payload
@@ -35,7 +38,7 @@ export const UserProvider = ({ children }) => {
   const { currentUser } = state; //destructuring
 
   const setCurrentUser = (user) =>
-    dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, currentUser: user }); // the dispatch function that will update the Currentuser
+    dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user)); // the dispatch function that will update the Currentuser
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
