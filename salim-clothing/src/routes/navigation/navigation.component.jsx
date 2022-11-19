@@ -3,25 +3,32 @@ import { Fragment, useContext } from "react";
 
 import { Outlet, Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import { UserContext } from "../../contexts/user.context";
+// import { UserContext } from "../../contexts/user.context"; //by this hook we willgeyt the values inside of Rdux into our component  /BEFORE/
+
 import { CartContext } from "../../contexts/cart.context";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.scss";
 
-const Navigation = () => {
-  {
-    /* Navigation is a top level component --> always shown up */
-  }
+{
+  /* Navigation is a top level component --> always shown up */
+}
 
-  const { currentUser } = useContext(UserContext);
-  // console.log(currentUser);
+const Navigation = () => {
+  //const { currentUser } = useContext(UserContext);   //BEFORE/
+  //   A selector function and a selector function is something that essentially extracts off the values that  you want from the whole entire Redux store.  (  the STATE is a big global object composed of all small reducers )
+  // AFTER //
+  const currentUser = useSelector(selectCurrentUser);
+
   const { isCartOpen } = useContext(CartContext);
 
   return (
