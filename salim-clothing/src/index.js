@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+
 import "./index.scss";
 import App from "./App";
 //import { UserProvider } from "./contexts/user.context";   (old with Context API)
 //import { CategoriesProvider } from "./contexts/categories.context"; (old with Context API)
-import { CartProvider } from "./contexts/cart.context";
+//import { CartProvider } from "./contexts/cart.context"; (old with Context API)
+
+import { Provider } from "react-redux"; // NEW with redux
 
 import { store } from "./store/store.js";
 
@@ -16,12 +18,14 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      {" "}
+      {/*  NEW with redux  and only one */}
       <BrowserRouter>
         {/* <UserProvider>*/}
         {/*<CategoriesProvider>*/}
-        <CartProvider>
-          <App />
-        </CartProvider>
+        {/* <CartProvider>*/}
+        <App />
+        {/*</CartProvider>*/}
         {/*</CategoriesProvider>*/}
         {/* </UserProvider>*/}
       </BrowserRouter>

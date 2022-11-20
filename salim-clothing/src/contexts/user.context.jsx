@@ -1,3 +1,7 @@
+
+
+/***********************  We can delete this file after working with REDUX ************************ */
+
 import { createContext, useEffect, useReducer } from "react";
 
 import { createAction } from "../utils/reducer/reducer.utils.jsx";

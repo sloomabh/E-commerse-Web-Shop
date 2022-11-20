@@ -1,19 +1,20 @@
 import React from "react";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 
 import { Outlet, Link } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-// import { UserContext } from "../../contexts/user.context"; //by this hook we willgeyt the values inside of Rdux into our component  /BEFORE/
+import { useSelector } from "react-redux"; // New
 
-import { CartContext } from "../../contexts/cart.context";
-import { selectCurrentUser } from "../../store/user/user.selector";
+// import { UserContext } from "../../contexts/user.context"; (old with Context API)
+import { selectCurrentUser } from "../../store/user/user.selector"; //NEW
+
+// import { CartContext } from "../../contexts/cart.context";   (old with Context API)
+import { selectIsCartOpen } from "../../store/cart/cart.selector"; //NEW
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
@@ -25,11 +26,14 @@ import "./navigation.styles.scss";
 
 const Navigation = () => {
   //const { currentUser } = useContext(UserContext);   //BEFORE/
-  //   A selector function and a selector function is something that essentially extracts off the values that  you want from the whole entire Redux store.  (  the STATE is a big global object composed of all small reducers )
-  // AFTER //
-  const currentUser = useSelector(selectCurrentUser);
 
-  const { isCartOpen } = useContext(CartContext);
+  //   A selector function and a selector function is something that essentially extracts off the values that  you want from the whole entire Redux store.  (  the STATE is a big global object composed of all small reducers )
+
+  const currentUser = useSelector(selectCurrentUser); // AFTER //
+
+  // const { isCartOpen } = useContext(CartContext); (old with Context API)
+
+  const isCartOpen = useSelector(selectIsCartOpen); // AFTER //
 
   return (
     <Fragment>

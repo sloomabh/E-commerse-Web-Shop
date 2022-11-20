@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import React from "react";
 import { createAction } from "../utils/reducer/reducer.utils.jsx";
+
 /**********************   addCartItem (helper function for  setCartItems) **************************** */
 //find if cartitems contains
 
@@ -64,6 +65,8 @@ const removeCartItem = (cartItems, cartItemToremove) => {
 /**********************   clearCartItem ( third helper function for  setCartItems) **************************** */
 const clearCartItem = (cartItems, cartItemToClear) =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+
+/*************************************************************************** */
 
 export const CartContext = createContext({
   isCartOpen: true,
