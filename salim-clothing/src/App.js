@@ -21,6 +21,7 @@ import { setCurrentUser } from "./store/user/user.action";
 const App = () => {
   const dispatch = useDispatch();
 
+  //from usercontext because we dont use that file any more after using redux
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {

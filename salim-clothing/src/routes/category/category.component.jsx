@@ -1,16 +1,22 @@
-import { useContext, useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import React from "react";
 
 import ProductCard from "../../components/product-card/product-card.component";
 
-import { CategoriesContext } from "../../contexts/categories.context";
+//import { CategoriesContext } from "../../contexts/categories.context"; //old
+import { useSelector } from "react-redux"; //New
+
+import { selectCategoriesMap } from "../../store/categories/categories.selector"; //New
 
 import "./category.styles.scss";
 
 const Category = () => {
   const { category } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
+  //const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap = useSelector(selectCategoriesMap); //New
+  //the  useselector, runs every time that the state object has updated in the route reducer.
+
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
