@@ -10,7 +10,8 @@ import App from "./App";
 
 import { Provider } from "react-redux"; // NEW with redux
 
-import { store } from "./store/store.js";
+import { store, persistor } from "./store/store.js";
+import { PersistGate } from "redux-persist/integration/react";
 
 import reportWebVitals from "./reportWebVitals";
 
@@ -20,15 +21,17 @@ root.render(
     <Provider store={store}>
       {" "}
       {/*  NEW with redux  and only one */}
-      <BrowserRouter>
-        {/* <UserProvider>*/}
-        {/*<CategoriesProvider>*/}
-        {/* <CartProvider>*/}
-        <App />
-        {/*</CartProvider>*/}
-        {/*</CategoriesProvider>*/}
-        {/* </UserProvider>*/}
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          {/* <UserProvider>*/}
+          {/*<CategoriesProvider>*/}
+          {/* <CartProvider>*/}
+          <App />
+          {/*</CartProvider>*/}
+          {/*</CategoriesProvider>*/}
+          {/* </UserProvider>*/}
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
