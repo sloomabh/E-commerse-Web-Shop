@@ -20,3 +20,9 @@ export const selectCategoriesMap = createSelector(
 );
 
 //as long as the categories array does not change,do not rerun this method. Of course you want to reduce once, but after that, as long as it has not changed, don't even bother rerunning it.Just give me back the previously calculated value.And because the previous recalculated value was the previous return of reduce, which is an object in memory.
+/************************************ */
+//addaselector forredux thunk
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+);
