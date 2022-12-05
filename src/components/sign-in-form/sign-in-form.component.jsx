@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import React from "react";
 import {
   createUserDocumentFromAuth,
@@ -12,12 +13,19 @@ import Button from "../button/button.component";
 
 import "./sign-in-form.styles.scss";
 
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from "../../store/user/user.action";
+
 const defaultFormFields = {
   email: "",
   password: "",
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   //we destruct them incase we need them
   const { email, password } = formFields;
@@ -30,17 +38,14 @@ const SignInForm = () => {
 
   // when makecall to database it is an asynchronous operation
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
-    //setCurrentUser(user);
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthWithEmailAndPassword(email, password);
-
-      // setCurrentUser(user);
+      dispatch(emailSignInStart(email, password));
 
       resetFormFields();
     } catch (error) {

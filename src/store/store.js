@@ -7,9 +7,13 @@ import storage from "redux-persist/lib/storage"; //persist data
 //import logger from 'redux-logger'
 import logger from "redux-logger";
 
-import thunk from "redux-thunk";
+//import thunk from "redux-thunk";   //saga replace thunks
+import createSagaMiddleware from "redux-saga";
 
 import { rootReducer } from "./root-reducer.js";
+import { rootSaga } from "./root-saga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: "root",
@@ -19,7 +23,7 @@ const persistConfig = {
 
 const middleWares = [
   process.env.NODE_ENV === "development" && logger,
-  thunk,
+  sagaMiddleware,
 ].filter(
   Boolean //how we keep middleware if we work in developpment // middleware wont work if we change delopmenttoproduction(can check console)
 ); // Middlewears our kind of like little library helpers that run before an action hits the reducer. (between UI & reducers)
@@ -42,7 +46,11 @@ export const store = createStore(
   composedEnhancers
 );
 
+sagaMiddleware.run(rootSaga);
+
 export const persistor = persistStore(store);
 
 // THUMK  : Now we can start writing things. So what you want to do with THUMKs is essentially you want to figure out where in your application code
 //          base you have asynchronous behavior that you can move into a action driven flow.
+
+//thunks and saga are async sideeffect library
