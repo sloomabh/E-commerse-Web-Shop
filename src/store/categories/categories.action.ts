@@ -1,32 +1,38 @@
 import CATEGORIES_ACTION_TYPES from "./categories.types";
-import { createAction } from "../../utils/reducer/reducer.utils";
+import { Category } from "./categories.types";
 
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+import {
+  createAction,
+  Action,
+  withMatcher,
+  ActionWithPayload,
+} from "../../utils/reducer/reducer.utils";
 
-// export const setCategories = (categoriesArray) =>
-//   createAction(CATEGORIES_ACTION_TYPES.SET_CATEGORIES, categoriesArray);
+export type FetchCategoriesStart =
+  Action<CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START>;
 
-export const fetchCategoriesStart = () =>
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
+export type FetchCategoriesSuccess = ActionWithPayload<
+  CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
+  Category[]
+>;
 
-export const fetchCategoriesSuccess = (categoriesArray) =>
-  createAction(
-    CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
-    categoriesArray
-  );
+export type FetchCategoriesFailed = ActionWithPayload<
+  CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
+  Error
+>;
 
-export const fetchCategoriesFailure = (error) =>
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
+export const fetchCategoriesStart = withMatcher(() =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START)
+);
 
-// the  redux- thunk function (asynchronous Reduxlibrary)
-export const fetchCategoriesStartAsync = () => {
-  return async (dispatch) => {
-    dispatch(fetchCategoriesStart());
-    try {
-      const categoriesArray = await getCategoriesAndDocuments("categories");
-      dispatch(fetchCategoriesSuccess(categoriesArray));
-    } catch (error) {
-      dispatch(fetchCategoriesFailure(error));
-    }
-  };
-};
+export const fetchCategoriesSuccess = withMatcher(
+  (categoriesArray: Category[]) =>
+    createAction(
+      CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
+      categoriesArray
+    )
+);
+
+export const fetchCategoriesFailed = withMatcher((error: Error) =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
+);
